@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Homework01_task03</h1>
+    <div class="new_class" id="root001">
+        <div class="class01">
+            <p>Lorem, ipsum.</p>
+            <div class="class08">
+                Lorem ipsum dolor sit amet consectetur adipisicing.
+            </div>
+            <div class="class02">
+                <p>Lorem, ipsum dolor.</p>
+                <div class="class03">
+                    <div class="class05">
+                        Lorem ipsum dolor sit amet.
+                    </div>
+                    <p>Lorem ipsum dolor sit.</p>
+                    <div class="class04">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="new-class01" id="root">
+        <div class="my-class01">
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <div class="my-class02">
+                <h3>Lorem, ipsum.</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                <div class="my-class">
+                    <p>Find element</p>
+                </div>
+            </div>
+            <div class="my-class03">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //         Домашнее задание
+        // 1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, найти минимальное число в массиве, решение задание должно состоять из одной строки
+
+        const arr = [1, 5, 7, 9];
+        console.log(`Минимальное число массива ${arr} - ${Math.min(...arr)}`);
+
+        // 2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с двумя методами: increment и decrement. Метод increment должен увеличивать значение счетчика на 1, а метод decrement должен уменьшать значение счетчика на 1. Значение счетчика должно быть доступно только через методы объекта, а не напрямую.
+
+        function createCounter() {
+            let count = 0;
+            return {
+                increment() {
+                    return ++count;
+                },
+                decrement() {
+                    return --count;
+                }
+            }
+        }
+        const counter = createCounter();
+        console.log(counter.increment());
+        console.log(counter.increment());
+        console.log(counter.increment());
+        console.log(counter.decrement());
+        console.log(counter.decrement());
+
+        // 3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом в этом дереве.
+        // Пример
+        // const rootElement = document.getElementById('root');
+        // const targetElement = findElementByClass(rootElement, 'my-class');
+        // console.log(targetElement);
+
+        let findElement = [];
+        function findElementByClass(element, classOfElement) {
+            if (element.className === classOfElement) {
+                return element;
+            } else {
+                for (let child of element.children) {
+                    findElement = findElementByClass(child, classOfElement);
+                    if (findElement) {
+                        return findElement;
+                    }
+                }
+            }
+            return null;
+        }
+
+        const rootElement = document.getElementById('root');
+        const targetElement = findElementByClass(rootElement, 'my-class');
+        console.log(targetElement);
+
+    </script>
+</body>
+
+</html>
